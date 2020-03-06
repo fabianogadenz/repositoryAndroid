@@ -16,6 +16,7 @@ import retrofit2.Response;
 
 public class PokemonRepository {
     private ArrayList<Pokemon> pokemons = new ArrayList<>();
+    private ArrayList<Pokemon> pokemonsFilter = new ArrayList<>();
     private MutableLiveData<List<Pokemon>> mutableLiveData = new MutableLiveData<>();
     private Application application;
 
@@ -42,6 +43,17 @@ public class PokemonRepository {
                 Log.d("debug", t.getStackTrace().toString());
             }
         });
+        return mutableLiveData;
+    }
+
+    public MutableLiveData<List<Pokemon>> getMutableLiveDataFilter() {
+        if (pokemons != null) {
+            for (Pokemon pokemon: pokemons) {
+                if (pokemon.getmIsHidden())
+                    pokemonsFilter.add(pokemon);
+            }
+            mutableLiveData.setValue(pokemonsFilter);
+        }
         return mutableLiveData;
     }
 }

@@ -22,5 +22,9 @@ public class MainViewModel extends AndroidViewModel {
         return pokemonRepository.getMutableLiveData();
     }
 
+    public LiveData<List<Pokemon>> getFilterPokemon() {
+        return pokemonRepository.getMutableLiveDataFilter();
+    }
+
 
 }
